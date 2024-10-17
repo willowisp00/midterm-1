@@ -1,1 +1,17 @@
+def transform_data(numbers):
+    # Step 1: Create a new list containing the squared values
+    squared_list = [num ** 2 for num in numbers]
+    
+    # Step 2: Calculate the sum of the squared values
+    squared_sum = sum(squared_list)
+    
+    # Step 3: Return both the new list and the sum
+    return squared_list, squared_sum
+
+# Example usage:
+if __name__ == "__main__":
+    original_numbers = [1, 2, 3, 4, 5]
+    squared_values, total_sum = transform_data(original_numbers)
+    print("Squared Values:", squared_values)
+    print("Sum of Squared Values:", total_sum)
 
