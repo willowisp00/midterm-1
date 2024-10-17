@@ -1,1 +1,46 @@
+def read_grades(filename):
+    grades = {}
+    with open(filename, 'r') as file:
+        for line in file:
+            parts = line.split()
+            if len(parts) == 2:
+                name = parts[0]
+                try:
+                    grade = float(parts[1])
+                    grades[name] = grade
+                except ValueError:
+                    print(f"Invalid grade for {name}, skipping...")
+    return grades
+
+def calculate_average(grades):
+    if not grades:
+        return 0
+    return sum(grades.values()) / len(grades)
+
+def count_above_average(grades, average):
+    return sum(1 for grade in grades.values() if grade > average)
+
+def write_results(filename, average, count):
+    with open(filename, 'w') as file:
+        file.write(f"Average Grade: {average:.2f}\n")
+        file.write(f"Number of Students Above Average: {count}\n")
+
+def main():
+    grades_filename = 'grades.txt'
+    results_filename = 'results.txt'
+    
+    # Read grades from the file
+    grades = read_grades(grades_filename)
+
+    # Calculate the average grade
+    average_grade = calculate_average(grades)
+
+    # Count the number of students who scored above average
+    above_average_count = count_above_average(grades, average_grade)
+
+    # Write the results to a file
+    write_results(results_filename, average_grade, above_average_count)
+
+if __name__ == '__main__':
+    main()
 
